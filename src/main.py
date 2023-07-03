@@ -28,6 +28,11 @@ async def read_item(request: Request):
                                                     "total_questions": len(questions_df)})
 
 
+@app.get("/favicon.ico")
+async def read_item(request: Request):
+    pass
+
+
 @app.post("/next")
 async def next_question(request: Request, answer: str = Form(...)):
     global current_question, score
@@ -58,6 +63,7 @@ async def previous_question(request: Request, answer: str = Form(...)):
     return templates.TemplateResponse("quiz.html", {"request": request, "current_question": current_question,
                                                     "question": questions_df.iloc[current_question],
                                                     "total_questions": len(questions_df)})
+
 
 # @app.post("/submit")
 # async def submit_quiz(request: Request, answer: str):
